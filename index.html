@@ -1,0 +1,2107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tastto - Inteligência para Restaurantes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;600;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-base: #08080f;
+            --bg-surface: #0f0f1a;
+            --bg-card: #13131f;
+            --bg-card-hover: #18182a;
+            --accent-primary: #6a4ef8;
+            --accent-secondary: #9b7ff8;
+            --accent-glow: rgba(106,78,248,0.15);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255,255,255,0.55);
+            --text-tertiary: rgba(255,255,255,0.30);
+            --border-subtle: rgba(255,255,255,0.07);
+            --border-accent: rgba(106,78,248,0.35);
+            --gradient-headline: linear-gradient(135deg, #fff, #a89af8);
+            --gradient-section-divider: linear-gradient(90deg, transparent, rgba(106,78,248,0.4), transparent);
+            
+            /* Preserved original gradients */
+            --gradient-text-original: linear-gradient(135deg, #fff 0%, #B0AFFF 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: clip;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--text-primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.2s;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+        }
+
+        /* Typography */
+        .syne-800 { font-family: 'Syne', sans-serif; font-weight: 800; }
+        .syne-700 { font-family: 'Syne', sans-serif; font-weight: 700; }
+        .space-600 { font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+        .space-500 { font-family: 'Space Grotesk', sans-serif; font-weight: 500; }
+        .inter-800 { font-family: 'Inter', sans-serif; font-weight: 800; }
+
+        .eyebrow {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            font-size: 11px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 6px 16px;
+            border-radius: 100px;
+            border: 1px solid var(--border-accent);
+            background: var(--accent-glow);
+            color: var(--accent-secondary);
+            margin-bottom: 12px;
+        }
+
+        .h1-main {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(28px, 6.5vw, 56px);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            background: var(--gradient-headline);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 24px;
+        }
+
+        .h1-main span {
+            display: block;
+            background: var(--gradient-headline);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .h2-section {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(24px, 5.5vw, 42px);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            background: var(--gradient-headline);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 40px;
+        }
+
+        .h2-section span {
+            display: block;
+            background: var(--gradient-headline);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .p-main {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin-bottom: 40px;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-headline);
+            color: var(--bg-base);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.05em;
+            padding: 14px 28px;
+            border-radius: 100px;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(168, 154, 248, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .btn-nav {
+            background: var(--gradient-headline);
+            color: var(--bg-base);
+            padding: 10px 24px;
+            font-size: 13px;
+            border: none;
+            border-radius: 100px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(168, 154, 248, 0.3);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: absolute !important;
+            top: 24px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            width: 90%;
+            max-width: 1000px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 100px;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+        }
+
+        .navbar-inner {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            width: 100%;
+            padding: 0 24px;
+            gap: 20px;
+        }
+
+        .logo img {
+            height: 32px;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-cta-wrapper {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .nav-link {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        /* Marquee */
+        .brands-marquee {
+            width: 100%;
+            overflow: hidden;
+            padding: 80px 0 100px 0;
+            background: transparent;
+            display: flex;
+            align-items: center;
+        }
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            gap: 120px;
+            width: max-content;
+            animation: scroll-left 50s linear infinite;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .brand-logo {
+            height: 220px;
+            object-fit: contain;
+            transition: 0.4s;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            width: 100%;
+            background: var(--gradient-section-divider);
+        }
+
+        /* Hero */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-proof {
+            margin-top: 20px;
+            font-size: 12px;
+            color: var(--text-tertiary);
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        /* Hero Form */
+        .hero-form-wrapper {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 24px 32px;
+            margin-top: 16px;
+            width: 100%;
+            max-width: 960px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-form-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            margin: 0;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-form {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-form-input-group {
+            display: flex;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 100px;
+            padding: 8px 16px;
+            flex: 1;
+            min-width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .hero-form-input-group:focus-within {
+            border-color: rgba(106,78,248,0.5);
+            background: rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0 0 2px rgba(106,78,248,0.1);
+        }
+
+        .hero-form-icon-wrap {
+            width: 28px;
+            height: 28px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            color: #a89af8;
+            flex-shrink: 0;
+        }
+
+        .hero-form-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            width: 100%;
+            flex: 1;
+        }
+
+        .hero-form-input::placeholder {
+            color: rgba(255,255,255,0.4);
+        }
+        
+        /* Previne o fundo branco padrao do Chrome quando o campo eh preenchido por autofill */
+        .hero-form-input:-webkit-autofill,
+        .hero-form-input:-webkit-autofill:hover, 
+        .hero-form-input:-webkit-autofill:focus, 
+        .hero-form-input:-webkit-autofill:active {
+            -webkit-text-fill-color: #fff !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        .hero-btn-submit {
+            padding: 14px 32px;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 860px) {
+            .hero-form {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .hero-form-input-group {
+                width: 100%;
+            }
+            .hero-btn-submit {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Pain vs Solution */
+        .pain-solution {
+            padding: 100px 0;
+        }
+
+        .ps-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+
+        .ps-card {
+            background: rgba(15, 15, 26, 0.4);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .ps-card-highlight {
+            background: rgba(139, 92, 246, 0.05);
+            border: 2px solid rgba(139, 92, 246, 0.5);
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.15);
+            transform: scale(1.04);
+            z-index: 10;
+        }
+
+        .ps-card-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        .ps-icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .ps-card-highlight .ps-icon-box {
+            background: rgba(139, 92, 246, 0.1);
+            border-color: rgba(139, 92, 246, 0.3);
+            color: #8b5cf6;
+        }
+
+        .ps-header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ps-card-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #fff;
+            line-height: 1.2;
+        }
+
+        .ps-card-tag {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-primary);
+            margin-top: 4px;
+        }
+
+        .ps-card-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .ps-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 24px;
+        }
+
+        .ps-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 32px;
+            flex-grow: 1;
+        }
+
+        .ps-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        .ps-btn-wrap {
+            margin-top: auto;
+        }
+
+        .btn-card {
+            display: block;
+            width: 100%;
+            padding: 14px;
+            border-radius: 100px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 13px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05); /* Efeito de vidro */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-card-gradient {
+            background: var(--gradient-headline);
+            color: var(--bg-base);
+            border: none;
+            box-shadow: 0 4px 15px rgba(168, 154, 248, 0.3);
+        }
+
+        .btn-card-gradient:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(168, 154, 248, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .icon-x {
+            color: #ff4d4d;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .icon-check {
+            color: #8b5cf6;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Braço Direito */
+        .braco-direito {
+            padding: 100px 0;
+        }
+
+        .braco-direito {
+            padding: 100px 0;
+        }
+
+        .bd-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 100px;
+            align-items: center;
+            text-align: left;
+        }
+
+        .bd-text {
+            max-width: none;
+            margin: 0;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .bd-text h2 {
+            margin-bottom: 0;
+        }
+
+        .bd-text p {
+            margin-bottom: 0;
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+            max-width: 380px;
+        }
+
+        .bd-text p.highlight {
+            color: var(--text-primary);
+            font-weight: 500;
+            padding-left: 16px;
+            border-left: 2px solid var(--accent-primary);
+            font-size: 15px;
+            max-width: 380px;
+            margin: 0;
+            text-align: left;
+            line-height: 1.5;
+        }
+
+        .bd-main-cta {
+            margin-top: 4px;
+        }
+
+        .bd-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            width: 100%;
+        }
+
+        .mini-card {
+            background: var(--accent-primary);
+            border: none;
+            border-radius: 16px;
+            background: rgba(40, 25, 90, 0.4); /* Vidro roxo escurecido/menos intenso */
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(155, 127, 248, 0.15);
+            border-radius: 20px;
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+            align-items: flex-start;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .mini-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            background: rgba(50, 30, 110, 0.5);
+            border-color: rgba(155, 127, 248, 0.3);
+            box-shadow: 0 20px 40px rgba(106, 78, 248, 0.2);
+        }
+
+        .mini-card-icon {
+            width: 28px;
+            height: 28px;
+            color: #fff;
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .mini-card h4 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 16px;
+            color: #fff;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .mini-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.5;
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            max-width: none;
+        }
+
+        .btn-mini-card {
+            margin-top: auto;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 11px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            width: 100%;
+        }
+
+        .btn-mini-card:hover {
+            gap: 12px;
+            color: #fff;
+        }
+
+        .btn-mini-card svg {
+            transition: 0.2s;
+        }
+
+        .btn-mini-card:hover svg {
+            transform: translateX(4px);
+        }
+
+        .bd-cta-wrap {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        /* Método Five */
+        .metodo-five-wrap {
+            margin-top: 40px;
+            background: radial-gradient(circle at center, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
+            padding: 80px 0;
+            border-radius: 40px;
+            position: relative;
+        }
+
+        /* --- Método Five: radial / pentagon layout --- */
+        .metodo-radial {
+            position: relative;
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            height: 520px;
+        }
+
+        .metodo-radial::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 58%;
+            height: 72%;
+            border: 1px dashed rgba(255, 255, 255, 0.18);
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Pentagon positions – each label centered at its point */
+        .m-pos { left: 50%;  top: 14%; }
+        .m-seg { left: 78%;  top: 39%; }
+        .m-ofe { left: 68%;  top: 78%; }
+        .m-enc { left: 32%;  top: 78%; }
+        .m-est { left: 22%;  top: 39%; }
+
+        .m-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .metodo-item {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+            text-align: center;
+            width: 172px;
+            transform: translate(-50%, -50%);
+            transition: transform 0.35s ease;
+            z-index: 2;
+        }
+
+        .metodo-item:hover {
+            transform: translate(-50%, -57%);
+        }
+
+        .metodo-item h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 800;
+            font-size: 13px;
+            background: var(--gradient-headline);
+            color: var(--bg-base);
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            -webkit-text-fill-color: unset;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 11px 20px;
+            border-radius: 8px;
+            margin: 0;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(168, 154, 248, 0.2);
+            cursor: default;
+            white-space: nowrap;
+        }
+
+        .metodo-item p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--text-secondary);
+            margin: 0;
+            text-align: center;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            width: 100%;
+            /* Hidden by default — revealed on hover */
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            pointer-events: none;
+        }
+
+        .metodo-item:hover p {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .metodo-five-header {
+            text-align: center;
+        }
+
+        .metodo-five-header .h2-section {
+            margin-bottom: 0;
+            font-size: clamp(36px, 6vw, 56px);
+            line-height: 1.1;
+            font-family: 'Syne', sans-serif;
+        }
+
+        .metodo-five-header span {
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+
+        .metodo-five-header span::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(-4deg);
+            width: 130%;
+            height: 120%;
+            border: 3px solid #ea580c;
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .metodo-cta {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        @media (max-width: 860px) {
+            .metodo-radial { height: 460px; }
+            .metodo-item { width: 145px; }
+        }
+
+        @media (max-width: 640px) {
+            .metodo-five-wrap { padding: 40px 0; }
+            .metodo-radial {
+                height: auto;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 28px;
+                padding: 20px 0;
+            }
+            .metodo-radial::before { display: none; }
+            .m-center,
+            .metodo-item {
+                position: static;
+                transform: none;
+                width: auto;
+            }
+            .metodo-item:hover { transform: none; }
+            .metodo-item p {
+                opacity: 1;
+                transform: none;
+                max-width: 300px;
+                pointer-events: auto;
+            }
+        }
+
+        /* Pillars */
+        .pillars {
+            padding: 100px 0;
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .pillar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 28px 24px;
+            transition: 0.25s;
+        }
+
+        .pillar-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-3px);
+        }
+
+        .pillar-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-glow);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            margin-bottom: 20px;
+        }
+
+        .pillar-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .pillar-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+        }
+
+        .testimonials-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .video-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 320px;
+            transition: 0.3s;
+        }
+
+        .video-card:hover {
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(106,78,248,0.15);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 9 / 16;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 100px 0;
+            text-align: center;
+            background-color: var(--bg-surface);
+            background-image: radial-gradient(ellipse 800px 400px at center, rgba(106, 78, 248, 0.12), transparent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .final-cta h2 {
+            background: var(--gradient-headline);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .final-cta .btn-primary {
+            padding: 16px 36px;
+        }
+
+        .cta-friction {
+            margin-top: 16px;
+            font-size: 12px;
+            color: var(--text-tertiary);
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 100px 0;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 20px 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .faq-question {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 0;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-icon {
+            font-size: 20px;
+            font-weight: 400;
+            transition: transform 0.3s ease;
+            color: var(--text-tertiary);
+        }
+
+        .faq-answer {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 0.4s ease;
+            margin-top: 0;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            margin-top: 16px;
+            opacity: 1;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+
+        /* ── Método Five ── */
+        .m5-section {
+            background: #08080f;
+            padding: 100px 0;
+        }
+
+        .m5-header {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .m5-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(36px, 5.5vw, 56px);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #fff 0%, #a89af8 100%);
+            -webkit-background-clip: text;
+           background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 16px;
+        }
+
+        .m5-title span {
+            display: block;
+            background: linear-gradient(135deg, #fff 0%, #a89af8 100%);
+            -webkit-background-clip: text;
+           background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .m5-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 16px;
+            color: rgba(255,255,255,0.45);
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Grid: col-esq | center | col-dir */
+        .m5-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr 1fr;
+            grid-template-rows: auto auto;
+            gap: 16px;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        /* Card central ocupa as 2 linhas */
+        .m5-card-center {
+            grid-column: 2;
+            grid-row: 1 / 3;
+        }
+
+        .m5-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-top: 1px solid rgba(106,78,248,0.25);
+            border-radius: 20px;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            transition: border-color 0.3s, transform 0.3s, background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .m5-card:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(106,78,248,0.40);
+            transform: translateY(-4px);
+        }
+
+        /* Card central com destaque */
+        .m5-card.m5-card-center {
+            background: rgba(106,78,248,0.08);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            border: 1px solid rgba(106,78,248,0.45);
+            border-top: 2px solid rgba(168,154,248,0.6);
+            box-shadow: 0 0 40px rgba(106,78,248,0.12), inset 0 1px 0 rgba(255,255,255,0.05);
+            padding-top: 52px;
+        }
+
+        .m5-card.m5-card-center:hover {
+            background: rgba(106,78,248,0.12);
+            border-color: rgba(168,154,248,0.7);
+            transform: translateY(-6px);
+        }
+
+        /* Badge "NÚCLEO DO MÉTODO" */
+        .m5-badge {
+            display: inline-block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #c4b5fd;
+            background: rgba(106,78,248,0.18);
+            border: 1px solid rgba(106,78,248,0.35);
+            border-radius: 100px;
+            padding: 5px 14px;
+            align-self: flex-start;
+            margin-bottom: 4px;
+        }
+
+        /* Número ghost */
+        .m5-num {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 28px;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            user-select: none;
+            background: linear-gradient(135deg, #fff 0%, #a89af8 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            flex-shrink: 0;
+        }
+
+        .m5-card-center .m5-num {
+            font-size: 32px;
+        }
+
+        /* Número + título lado a lado */
+        .m5-card-top {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .m5-card-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .m5-card-center .m5-card-title {
+            font-size: 18px;
+        }
+
+        .m5-card-desc {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: rgba(255,255,255,0.50);
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .m5-card-center .m5-card-desc {
+            font-size: 15px;
+            color: rgba(255,255,255,0.60);
+        }
+
+        /* CTA */
+        .metodo-cta {
+            margin-top: 56px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 860px) {
+            .m5-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: unset;
+            }
+            .m5-card-center {
+                grid-column: unset;
+                grid-row: unset;
+            }
+        }
+
+        /* Footer */
+
+        .footer {
+            background: var(--bg-base);
+            border-top: 1px solid var(--border-subtle);
+            padding: 60px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-link {
+            font-size: 14px;
+            color: var(--text-tertiary);
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        .footer-bottom {
+            padding-top: 40px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .ps-grid, .bd-grid, .pillars-grid, .testimonials-grid, .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .metodo-radial {
+                height: 460px;
+            }
+            
+            .bd-grid {
+                gap: 40px;
+            }
+
+            .nav-links, .nav-cta-wrapper {
+                display: none;
+            }
+
+            .navbar-inner {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+            }
+
+            .hamburger-btn {
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+
+            .mobile-menu {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 85px;
+                left: 0;
+                right: 0;
+                background: rgba(18, 18, 25, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                padding: 24px;
+                gap: 20px;
+                opacity: 0;
+                pointer-events: none;
+                transform: translateY(-10px);
+                transition: 0.3s ease-in-out;
+                align-items: center;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            }
+
+            .mobile-menu.active {
+                opacity: 1;
+                pointer-events: auto;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .h1-main { font-size: 24px !important; line-height: 1.25 !important; }
+            .h2-section { font-size: 20px !important; line-height: 1.3 !important; }
+            .final-cta { text-align: center !important; }
+            .final-cta .container { align-items: center !important; text-align: center !important; }
+            .final-cta .p-main { margin-left: auto !important; margin-right: auto !important; text-align: center !important; }
+            .final-cta .social-icons { align-items: center; justify-content: center; }
+            
+            .hero {
+                padding-top: 120px;
+                padding-bottom: 60px;
+            }
+            .brands-marquee {
+                padding: 60px 0 80px 0;
+            }
+            .marquee-track {
+                gap: 60px;
+            }
+            .brand-logo {
+                height: 150px;
+            }
+            .pain-solution, .pilares, .testimonials, .final-cta, .faq {
+                padding-top: 60px !important;
+                padding-bottom: 60px !important;
+            }
+            .braco-direito {
+                padding-top: 20px !important;
+                padding-bottom: 60px !important;
+            }
+            .bd-text {
+                gap: 12px;
+            }
+            .bd-text .h2-section {
+                margin-bottom: 4px !important;
+            }
+            .p-main, .m5-subtitle, .bd-desc, .faq-answer {
+                font-size: 15px;
+            }
+            .ps-card, .bd-card, .pillar-card {
+                padding: 24px;
+            }
+            .m5-card {
+                padding: 20px;
+            }
+            .faq-item {
+                padding: 16px 20px;
+            }
+            .ps-grid, .bd-grid, .testimonials-grid, .pillars-grid {
+                gap: 24px;
+            }
+            .m5-card.m5-card-center {
+                padding-top: 32px;
+            }
+            .h2-section {
+                margin-bottom: 24px !important;
+            }
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(40, 25, 90, 0.4);
+            border: 1px solid rgba(155, 127, 248, 0.2);
+            transition: 0.3s;
+        }
+        .social-icon:hover {
+            transform: translateY(-3px);
+            background: rgba(106,78,248,0.2);
+            border-color: rgba(168,154,248,0.5);
+            box-shadow: 0 4px 15px rgba(106,78,248,0.15);
+        }
+        .final-cta-footer {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-headline);
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(168, 154, 248, 0.3);
+            transition: 0.3s;
+        }
+        .floating-whatsapp:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(168, 154, 248, 0.5);
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body>
+    <svg width="0" height="0" class="hidden" style="position: absolute;">
+        <defs>
+            <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff" />
+                <stop offset="100%" stop-color="#a89af8" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="logo">
+                <img src="tastto-icone.png" alt="Tastto Logo">
+            </a>
+            <div class="nav-links">
+                <a href="#depoimentos" class="nav-link">Depoimentos</a>
+                <a href="#metodo" class="nav-link">Método</a>
+                <a href="#solucao" class="nav-link">Solução</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </div>
+            <div class="nav-cta-wrapper">
+                <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-nav">Fale conosco</a>
+            </div>
+            <button class="hamburger-btn" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="mobile-menu">
+            <a href="#depoimentos" class="nav-link custom-mobile-link">Depoimentos</a>
+            <a href="#metodo" class="nav-link custom-mobile-link">Método</a>
+            <a href="#solucao" class="nav-link custom-mobile-link">Solução</a>
+            <a href="#faq" class="nav-link custom-mobile-link">FAQ</a>
+            <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-nav custom-mobile-link">Fale conosco</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Section 1: Hero -->
+        <section class="hero container">
+            <h1 class="h1-main">SEU RESTAURANTE<br>CRESCENDO&nbsp;COM<br><span>INTELIGÊNCIA</span></h1>
+            <p class="p-main" style="margin-bottom: 36px;">
+                Seu restaurante pode crescer com mais controle, mais recorrência e decisões mais seguras.
+                A Tastto une marketing, inteligência de dados e estratégia para fortalecer sua operação, no salão e no delivery, com uma comunicação mais clara e uma base de clientes melhor trabalhada.
+            </p>
+            <div class="hero-form-wrapper">
+                <h3 class="hero-form-title">Agende sua consultoria estratégica!</h3>
+                <form id="heroForm" class="hero-form">
+                    <div class="hero-form-input-group">
+                        <div class="hero-form-icon-wrap">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                        </div>
+                        <input type="text" id="formNome" name="nome" placeholder="Nome" class="hero-form-input" required pattern="^[A-Za-zÀ-ÿ\s]+$" title="Permitido apenas letras">
+                    </div>
+                    
+                    <div class="hero-form-input-group">
+                        <div class="hero-form-icon-wrap">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </div>
+                        <input type="email" id="formEmail" name="email" placeholder="E-mail" class="hero-form-input" required pattern="^.+?\.com(\.br)?$" title="O e-mail deve terminar com .com ou .com.br">
+                    </div>
+                    
+                    <div class="hero-form-input-group">
+                        <div class="hero-form-icon-wrap">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                        </div>
+                        <input type="tel" id="formTel" name="telefone" placeholder="Telefone" class="hero-form-input" required pattern="^[\+]?[\(\s\-]*[0-9]{2}[\)\s\-]*[0-9]{4,5}[\-\s]*[0-9]{4}$" title="Insira um telefone com 2 dígitos de DDD seguidos do número. Ex: (84) 99999-9999">
+                    </div>
+
+                    <button type="submit" id="formSubmitBtn" class="btn-primary hero-btn-submit">AGENDAR</button>
+                </form>
+                
+                <div id="formSuccessMessage" style="display: none; background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 12px 16px; border-radius: 12px; margin-top: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; text-align: center;">
+                    ✅ Dados enviados com sucesso! Redirecionando para o WhatsApp...
+                </div>
+                <div id="formErrorMessage" style="display: none; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px 16px; border-radius: 12px; margin-top: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; text-align: center;">
+                    ❌ Erro ao enviar os dados. Tente novamente.
+                </div>
+            </div>
+        </section>
+
+        <!-- Logos Marquee -->
+        <section class="brands-marquee">
+            <div class="marquee-track">
+                <!-- Group 1 -->
+                <img src="dist/ALO PIZZA L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CARAVELA L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CARDUME L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CASA MOSCOU L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CASA NACRE L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CORTE 84 L.png" alt="Brand" class="brand-logo">
+                <img src="dist/DUNNAS L.png" alt="Brand" class="brand-logo">
+                <img src="dist/FOGO  ² L.png" alt="Brand" class="brand-logo">
+                <img src="dist/GALETERIA L.png" alt="Brand" class="brand-logo">
+                <img src="dist/HSH L.png" alt="Brand" class="brand-logo">
+                <img src="dist/KALAZ L.png" alt="Brand" class="brand-logo">
+                <img src="dist/MENEZ L.png" alt="Brand" class="brand-logo">
+                <img src="dist/MK BURGUER L.png" alt="Brand" class="brand-logo">
+                <img src="dist/NIPPON L.png" alt="Brand" class="brand-logo">
+                <img src="dist/PICUÍ L.png" alt="Brand" class="brand-logo">
+                <img src="dist/THE DEW L.png" alt="Brand" class="brand-logo">
+                <img src="dist/UNI SABOR L.png" alt="Brand" class="brand-logo">
+                <img src="dist/ZAMÔ L.png" alt="Brand" class="brand-logo">
+                
+                <!-- Group 2 (Duplicate for infinite loop) -->
+                <img src="dist/ALO PIZZA L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CARAVELA L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CARDUME L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CASA MOSCOU L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CASA NACRE L.png" alt="Brand" class="brand-logo">
+                <img src="dist/CORTE 84 L.png" alt="Brand" class="brand-logo">
+                <img src="dist/DUNNAS L.png" alt="Brand" class="brand-logo">
+                <img src="dist/FOGO  ² L.png" alt="Brand" class="brand-logo">
+                <img src="dist/GALETERIA L.png" alt="Brand" class="brand-logo">
+                <img src="dist/HSH L.png" alt="Brand" class="brand-logo">
+                <img src="dist/KALAZ L.png" alt="Brand" class="brand-logo">
+                <img src="dist/MENEZ L.png" alt="Brand" class="brand-logo">
+                <img src="dist/MK BURGUER L.png" alt="Brand" class="brand-logo">
+                <img src="dist/NIPPON L.png" alt="Brand" class="brand-logo">
+                <img src="dist/PICUÍ L.png" alt="Brand" class="brand-logo">
+                <img src="dist/THE DEW L.png" alt="Brand" class="brand-logo">
+                <img src="dist/UNI SABOR L.png" alt="Brand" class="brand-logo">
+                <img src="dist/ZAMÔ L.png" alt="Brand" class="brand-logo">
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 2: Pain vs Solution -->
+        <section id="solucao" class="pain-solution container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 class="h2-section">SUBSTITUA A FALTA&nbsp;DE <span>CLAREZA POR DADOS</span></h2>
+            </div>
+            <div class="ps-grid">
+                <!-- Card 1: Negação -->
+                <div class="ps-card">
+                    <div class="ps-card-header">
+                        <div class="ps-icon-box">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+                        </div>
+                        <div class="ps-header-text">
+                            <h3 class="ps-card-title">Crescimento <br> Travado</h3>
+                            <span class="ps-card-tag" style="color: #ff4d4d;">Desafios Atuais</span>
+                        </div>
+                    </div>
+                    <p class="ps-card-desc">Identifique os gargalos que impedem sua operação de escalar com eficiência e clareza.</p>
+                    <div class="ps-divider"></div>
+                    <ul class="ps-list">
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Decisões tomadas no feeling</li>
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Comunicação solta com os clientes</li>
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Base de clientes pouco trabalhada</li>
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Falta de visão sobre o que gera resultado</li>
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Delivery sem estrutura</li>
+                    </ul>
+                    <div class="ps-btn-wrap">
+                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-card btn-card-gradient">Analisar Cenário</a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Afirmação (Destaque) -->
+                <div class="ps-card ps-card-highlight">
+                    <div class="ps-card-header">
+                        <div class="ps-icon-box">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <div class="ps-header-text">
+                            <h3 class="ps-card-title">O que a <br> Tastto Entrega</h3>
+                            <span class="ps-card-tag">Nossa Solução</span>
+                        </div>
+                    </div>
+                    <p class="ps-card-desc">Direção técnica e estratégica baseada em dados reais para transformar sua operação.</p>
+                    <div class="ps-divider"></div>
+                    <ul class="ps-list">
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Direção baseada em dados reais</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Estratégia de comunicação clara</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Ações para aumentar recorrência</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Inteligência para identificar gargalos</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Marketing voltado para retenção</li>
+                    </ul>
+                    <div class="ps-btn-wrap">
+                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-card btn-card-gradient">Quero Crescer Agora</a>
+                    </div>
+                </div>
+
+                <!-- Card 3: CTA -->
+                <div class="ps-card">
+                    <div class="ps-card-header">
+                        <div class="ps-icon-box">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <div class="ps-header-text">
+                            <h3 class="ps-card-title">Precisa de <br> Ajuda?</h3>
+                            <span class="ps-card-tag" style="color: #8b5cf6;">Suporte Direto</span>
+                        </div>
+                    </div>
+                    <p class="ps-card-desc">Qualquer dúvida ou problema estamos de prontidão para ajudar você e seu time.</p>
+                    <div class="ps-divider"></div>
+                    <ul class="ps-list">
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Atendimento personalizado</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Especialistas em dados</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Consultoria estratégica</li>
+                    </ul>
+                    <div class="ps-btn-wrap">
+                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-card btn-card-gradient">Fale Conosco</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 5: Testimonials -->
+        <section id="depoimentos" class="testimonials container">
+            <div style="text-align: center; margin-bottom: 100px;">
+                <h2 class="h2-section">OPERAÇÕES QUE&nbsp;JÁ<br><span>VIVEM A NOVA ERA DE&nbsp;DADOS</span></h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video src="dist/depoimento casa moscou.mp4" poster="dist/capa casamoscou png.png" controls playsinline preload="metadata"></video>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video src="dist/DEPPOIMENTO MK.mp4" poster="dist/CAPA MK.png" controls playsinline preload="metadata"></video>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 3: Braço Direito -->
+        <section id="metodo" class="braco-direito container">
+            <div class="bd-grid">
+                <div class="bd-text">
+                    <h2 class="h2-section">NOSSAS <span>SOLUÇÕES</span></h2>
+                    <p>
+                        A Tastto foi criada para ser o braço direito do dono de restaurante. Não entramos apenas para fazer divulgação. Entramos para organizar crescimento, reposicionar a marca, estruturar a comunicação e transformar dados em decisões melhores.
+                    </p>
+                    <p class="highlight">
+                        Você passa a enxergar melhor o que funciona, onde está perdendo venda, quais clientes precisam voltar e quais movimentos realmente fazem sentido para o seu momento.
+                    </p>
+                    <div class="bd-main-cta">
+                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20agendar%20um%20diagnóstico." target="_blank" class="btn-primary">AGENDAR DIAGNÓSTICO GRATUITO</a>
+                    </div>
+                </div>
+                <div class="bd-cards">
+                    <div class="mini-card">
+                        <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg></div>
+                        <h4>Operação de Salão</h4>
+                        <p>Estratégias para aumentar o ticket médio e melhorar a experiência presencial.</p>
+                        <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Operação%20de%20Salão." target="_blank" class="btn-mini-card">
+                            Saiba Mais
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                    <div class="mini-card">
+                        <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+                        <h4>Gestão de Ifood</h4>
+                        <p>Otimização de investimento<br>em campanhas.</p>
+                        <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Gestão%20de%20Ifood." target="_blank" class="btn-mini-card">
+                            Saiba Mais
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                    <div class="mini-card">
+                        <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                        <h4>Inteligência de Dados</h4>
+                        <p>Transformamos números em decisões estratégicas para o seu crescimento.</p>
+                        <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Inteligência%20de%20Dados." target="_blank" class="btn-mini-card">
+                            Saiba Mais
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                    <div class="mini-card">
+                        <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"></path></svg></div>
+                        <h4>Engenharia de Cardápio</h4>
+                        <p>Otimização de pratos e preços para maximizar sua margem de lucro.</p>
+                        <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Engenharia%20de%20Cardápio." target="_blank" class="btn-mini-card">
+                            Saiba Mais
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                    <div class="mini-card">
+                        <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div>
+                        <h4>Relacionamento com o Cliente</h4>
+                        <p>Gestão de CRM, aumento de retenção e frequência de compra dos clientes.</p>
+                        <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Relacionamento%20com%20o%20Cliente." target="_blank" class="btn-mini-card">
+                            Saiba Mais
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                    <div class="mini-card">
+                        <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                        <h4>Gestão de Tráfego</h4>
+                        <p>Campanhas segmentadas para atrair o público certo para o seu negócio.</p>
+                        <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Gestão%20de%20Tráfego." target="_blank" class="btn-mini-card">
+                            Saiba Mais
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 4: Método Five -->
+        <section class="m5-section">
+            <div class="container">
+                <div class="m5-header">
+                    <h2 class="m5-title">MÉTODO <span>FIVE</span></h2>
+                    <p class="m5-subtitle">Cinco pilares estratégicos que estruturam o crescimento<br>inteligente do seu restaurante.</p>
+                </div>
+
+                <div class="m5-grid">
+                    <!-- Col esquerda -->
+                    <div class="m5-card">
+                        <div class="m5-card-top">
+                            <span class="m5-num">01</span>
+                            <h4 class="m5-card-title">Posicionamento</h4>
+                        </div>
+                        <p class="m5-card-desc">Quais plataformas o seu restaurante está ativo? Facebook, Instagram, Google, TripAdvisor e Ifood são exemplos de plataformas importantes.</p>
+                    </div>
+                    <div class="m5-card">
+                        <div class="m5-card-top">
+                            <span class="m5-num">03</span>
+                            <h4 class="m5-card-title">Encantamento</h4>
+                        </div>
+                        <p class="m5-card-desc">Sistema de avaliação e comunicação assertiva para transformar clientes em promotores da marca.</p>
+                    </div>
+
+                    <!-- Card central (row-span 2) -->
+                    <div class="m5-card m5-card-center">
+                        <div class="m5-card-top">
+                            <span class="m5-num">02</span>
+                            <h4 class="m5-card-title">Estratégia</h4>
+                        </div>
+                        <p class="m5-card-desc">Conhecer os pontos fortes e fracos da marca para a aplicação de ações estratégicas, tendo sempre como objetivo o Método Five, a partir da transparência de dados e números.</p>
+                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-primary" style="margin-top: auto; font-size: 12px; padding: 12px 20px; text-align: center;">QUERO CRESCER COM O MÉTODO FIVE</a>
+                    </div>
+
+                    <!-- Col direita -->
+                    <div class="m5-card">
+                        <div class="m5-card-top">
+                            <span class="m5-num">04</span>
+                            <h4 class="m5-card-title">Segmentação</h4>
+                        </div>
+                        <p class="m5-card-desc">Segmentar é direcionar seus anúncios para as pessoas certas, no momento certo, com a mensagem certa.</p>
+                    </div>
+                    <div class="m5-card">
+                        <div class="m5-card-top">
+                            <span class="m5-num">05</span>
+                            <h4 class="m5-card-title">Oferta</h4>
+                        </div>
+                        <p class="m5-card-desc">Oferta não é promoção. É a construção de valor percebido que convence o cliente a agir sem precisar de desconto.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+
+
+        <!-- Section 6: Final CTA -->
+        <section id="contato" class="final-cta" style="display: block; text-align: left; padding-top: 60px;">
+            <div class="container" style="display: flex; flex-direction: column; align-items: flex-start;">
+                <h2 class="h2-section">A NOVA ERA DA&nbsp;SUA<br>OPERAÇÃO <span>COMEÇA AGORA</span></h2>
+                <p class="p-main" style="margin-left: 0; margin-right: auto;">
+                    Na consultoria estratégica, você entende com mais clareza onde sua operação está travando, o que está faltando na sua estrutura e quais ações podem gerar mais resultado no seu momento atual.
+                </p>
+                <div class="final-cta-footer" style="width: 100%;">
+                    <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-primary">AGENDAR CONSULTORIA ESTRATÉGICA</a>
+                </div>
+                <div style="width: 100%; display: flex; justify-content: center; margin-top: 80px;">
+                    <div class="social-icons" style="display: flex; gap: 16px;">
+                        <a href="https://www.instagram.com/tastto.br/" target="_blank" class="social-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#primaryGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        </a>
+                        <a href="https://wa.me/558481408381" target="_blank" class="social-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#primaryGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        </a>
+                        <a href="https://www.youtube.com/channel/UCdFnorZt5yvtAwd-MKDXN3A" target="_blank" class="social-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="url(#primaryGradient)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="section-divider"></div>
+
+        <!-- Section 7: FAQ -->
+        <section id="faq" class="faq container" style="padding-top: 40px;">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <h2 class="h2-section">DÚVIDAS <span>FREQUENTES</span></h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4 class="faq-question">A Tastto atende qualquer tipo de restaurante? <span class="faq-icon">+</span></h4>
+                    <p class="faq-answer">Sim. Atendemos operações de diferentes nichos da alimentação, com foco em restaurantes que querem crescer com mais estratégia, clareza e estrutura.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="faq-question">A consultoria é só para quem já tem delivery? <span class="faq-icon">+</span></h4>
+                    <p class="faq-answer">Não. A Tastto não atua só com delivery. Também atendemos restaurantes que trabalham apenas com salão e querem melhorar posicionamento, recorrência, comunicação e resultado. E, para quem atua com delivery, ajudamos a estruturar esse canal com mais organização e potencial de crescimento.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="faq-question">Qual é o objetivo do trabalho da Tastto? <span class="faq-icon">+</span></h4>
+                    <p class="faq-answer">Ajudar seu restaurante a crescer com inteligência, fortalecer salão e delivery, melhorar recorrência, organizar a comunicação com os clientes e usar dados para tomar decisões melhores.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="faq-question">Quanto tempo leva para ver resultado? <span class="faq-icon">+</span></h4>
+                    <p class="faq-answer">Marketing que funciona de verdade não é mágica — é processo. Nossos clientes começam a enxergar mudanças concretas em até 6 meses: mais clareza sobre o que funciona, campanhas mais eficientes e decisões baseadas em dados reais. E ao longo desse caminho, você já vai sentindo a diferença nas análises e no direcionamento do seu negócio.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="faq-question">Preciso ter sistema de gestão integrado? <span class="faq-icon">+</span></h4>
+                    <p class="faq-answer">Não é obrigatório. Trabalhamos com restaurantes em diferentes estágios — desde os que ainda operam de forma mais manual até os que já têm sistemas robustos. Ter um sistema de gestão ajuda a acelerar os resultados, mas o ponto de partida é o que você já tem hoje.</p>
+                </div>
+                <div class="faq-item">
+                    <h4 class="faq-question">Como é feita a cobrança? <span class="faq-icon">+</span></h4>
+                    <p class="faq-answer">Cada restaurante tem uma realidade diferente, então nossos planos são personalizados de acordo com o tamanho e as necessidades do seu negócio. Entre em contato e a gente apresenta a proposta ideal para você.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <a href="#" class="logo" style="display: block; margin-bottom: 20px;">
+                        <img src="logo.png" alt="Tastto Logo" style="height: 32px;">
+                    </a>
+                    <p>Inteligência de dados e marketing estratégico para restaurantes que buscam crescimento sólido e previsível.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <div class="footer-links">
+                        <span class="footer-link">+55 84 8140-8381</span>
+                        <span class="footer-link">atendimento@grupoarttico.com.br</span>
+                        <span class="footer-link">Natal/RN</span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Endereço</h4>
+                    <div class="footer-links">
+                        <span class="footer-link">Shopping, Av. Eng. Roberto Freire, 1962</span>
+                        <span class="footer-link">Capim Macio, Natal - RN</span>
+                        <span class="footer-link">59082-095</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Tastto. Todos os direitos reservados.</p>
+                <p>Natal/RN - Brasil</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/558481408381" target="_blank" class="floating-whatsapp">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--bg-base)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburgerBtn = document.querySelector('.hamburger-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const mobileLinks = document.querySelectorAll('.custom-mobile-link');
+
+            if(hamburgerBtn && mobileMenu) {
+                hamburgerBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('active');
+                });
+
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                    });
+                });
+            }
+
+            // Accordion FAQ logic
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(faq => faq.classList.remove('active'));
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Integração Form Herói -> Google Sheets
+        const heroForm = document.getElementById('heroForm');
+        if(heroForm) {
+            heroForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const btn = document.getElementById('formSubmitBtn');
+                const successMsg = document.getElementById('formSuccessMessage');
+                const errorMsg = document.getElementById('formErrorMessage');
+                
+                btn.innerText = 'ENVIANDO...';
+                btn.style.opacity = '0.7';
+                btn.disabled = true;
+                successMsg.style.display = 'none';
+                errorMsg.style.display = 'none';
+                
+                const formData = new FormData(heroForm);
+                formData.append("mensagem", "Contato via Landing Page Tastto");
+
+                const nome = formData.get('nome') || '';
+                const email = formData.get('email') || '';
+                const telefone = formData.get('telefone') || '';
+
+                // Validação Rígida em JavaScript (Backups de RegEx)
+                const nomeRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+                const telRegex = /^[\+]?[\(\s\-]*[0-9]{2}[\)\s\-]*[0-9]{4,5}[\-\s]*[0-9]{4}$/;
+                
+                if (!nomeRegex.test(nome)) {
+                    alert('Erro: O campo Nome deve conter apenas letras e espaços.');
+                    btn.innerText = 'AGENDAR';
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    return;
+                }
+                
+                if (!email.toLowerCase().endsWith('.com') && !email.toLowerCase().endsWith('.com.br')) {
+                    alert('Erro: O formulário foi bloqueado pois o e-mail deve obrigatoriamente terminar com .com ou .com.br');
+                    btn.innerText = 'AGENDAR';
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    return;
+                }
+                
+                if (!telRegex.test(telefone)) {
+                    alert('Erro: O telefone inserido é inválido. Digite apenas números, certificando-se de incluir os 2 dígitos do DDD da sua região.');
+                    btn.innerText = 'AGENDAR';
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    return;
+                }
+
+                const mensagemWhatsapp = `Olá, me chamo ${nome}. Já respondi o formulário na Landing Page da Tastto e gostaria de seguir com o agendamento da consultoria estratégica.`;
+                
+                try {
+                    const response = await fetch('https://script.google.com/macros/s/AKfycby3H2oGLtZcv4_RK1nmwCB-fNwkRGNGVZChbzOTCRfumCYNyZCCSLIyoKXc9oUjWNE5KQ/exec', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Falha ao salvar na planilha');
+                    }
+
+                    // Sucesso
+                    btn.innerText = 'AGENDAR';
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    successMsg.style.display = 'block';
+                    
+                    heroForm.reset();
+                    
+                    const numeroWhatsapp = '558481408381';
+                    const urlWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
+                    
+                    setTimeout(() => {
+                        window.location.href = urlWhatsapp;
+                    }, 1500);
+
+                } catch (error) {
+                    console.error('Erro ao enviar:', error);
+                    btn.innerText = 'AGENDAR';
+                    btn.style.opacity = '1';
+                    btn.disabled = false;
+                    errorMsg.style.display = 'block';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
