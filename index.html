@@ -1,9 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TXHG59GC');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tastto - Inteligência para Restaurantes</title>
+    <link rel="icon" type="image/png" href="tastto-icone.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;600;800&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
@@ -33,6 +41,10 @@
             padding: 0;
             box-sizing: border-box;
             -webkit-font-smoothing: antialiased;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -89,8 +101,8 @@
         .h1-main {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
-            font-size: clamp(28px, 6.5vw, 56px);
-            line-height: 1.1;
+            font-size: clamp(22px, 4.8vw, 44px);
+            line-height: 1.25;
             letter-spacing: -0.02em;
             text-transform: uppercase;
             background: var(--gradient-headline);
@@ -108,11 +120,38 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .h1-main .h1-italic {
+            display: block;
+            font-style: oblique 30deg;
+            text-transform: none;
+            font-weight: 600;
+            font-size: clamp(30px, 6.5vw, 60px);
+            background: var(--gradient-headline);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .h2-section .h1-italic {
+            display: block;
+            font-style: oblique 30deg;
+            text-transform: none;
+            font-weight: 600;
+            font-size: clamp(30px, 6.5vw, 60px);
+            background: var(--gradient-headline);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.4;
+            margin-top: -8px;
+            padding-bottom: 2px;
+        }
+
         .h2-section {
             font-family: 'Syne', sans-serif;
             font-weight: 800;
             font-size: clamp(24px, 5.5vw, 42px);
-            line-height: 1.1;
+            line-height: 1.4;
             letter-spacing: -0.02em;
             text-transform: uppercase;
             background: var(--gradient-headline);
@@ -134,9 +173,10 @@
             font-family: 'DM Sans', sans-serif;
             font-size: 18px;
             line-height: 1.6;
-            color: var(--text-secondary);
+            color: rgba(255,255,255,0.85);
             max-width: 640px;
             margin-bottom: 40px;
+            text-align: justify;
         }
 
         /* Buttons */
@@ -270,9 +310,7 @@
             animation: scroll-left 50s linear infinite;
         }
 
-        .marquee-track:hover {
-            animation-play-state: paused;
-        }
+        /* Removido animation-play-state: paused conforme solicitado */
 
         .brand-logo {
             height: 220px;
@@ -313,20 +351,19 @@
             font-family: 'DM Sans', sans-serif;
         }
 
-        /* Hero Form */
-        .hero-form-wrapper {
+        /* Hero Form */        .hero-form-wrapper {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 20px;
-            padding: 24px 32px;
+            border-radius: 24px;
+            padding: 28px 32px;
             margin-top: 16px;
             width: 100%;
             max-width: 960px;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             position: relative;
             z-index: 2;
@@ -351,32 +388,44 @@
         .hero-form-input-group {
             display: flex;
             align-items: center;
-            background: rgba(0, 0, 0, 0.25);
+            background: rgba(24, 24, 27, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 100px;
-            padding: 8px 16px;
+            padding: 6px 16px 6px 6px;
             flex: 1;
             min-width: 200px;
-            transition: all 0.3s ease;
+            transition: border-color 0.3s ease;
         }
 
         .hero-form-input-group:focus-within {
-            border-color: rgba(106,78,248,0.5);
-            background: rgba(0, 0, 0, 0.4);
-            box-shadow: 0 0 0 2px rgba(106,78,248,0.1);
+            border-color: rgba(167, 139, 250, 0.5);
         }
 
         .hero-form-icon-wrap {
-            width: 28px;
-            height: 28px;
-            background: rgba(255, 255, 255, 0.05);
+            width: 40px;
+            height: 40px;
+            background: #131315;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 12px;
-            color: #a89af8;
+            color: #a78bfa;
             flex-shrink: 0;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .hero-form-input-group:hover .hero-form-icon-wrap {
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.35);
+        }
+
+        .hero-form-icon-wrap svg {
+            filter: drop-shadow(0 0 0px rgba(167,139,250,0));
+            transition: filter 0.3s ease;
+        }
+
+        .hero-form-input-group:hover .hero-form-icon-wrap svg {
+            filter: drop-shadow(0 0 6px rgba(167,139,250,0.8));
         }
 
         .hero-form-input {
@@ -386,12 +435,13 @@
             color: #fff;
             font-family: 'DM Sans', sans-serif;
             font-size: 14px;
+            font-weight: 500;
             width: 100%;
             flex: 1;
         }
 
         .hero-form-input::placeholder {
-            color: rgba(255,255,255,0.4);
+            color: rgba(167, 139, 250, 0.6);
         }
         
         /* Previne o fundo branco padrao do Chrome quando o campo eh preenchido por autofill */
@@ -1274,7 +1324,8 @@
         }
 
         .m5-card-center .m5-card-desc {
-            font-size: 15px;
+            font-size: 17px;
+            line-height: 1.7;
             color: rgba(255,255,255,0.60);
         }
 
@@ -1410,11 +1461,13 @@
         }
 
         @media (max-width: 600px) {
-            .h1-main { font-size: 24px !important; line-height: 1.25 !important; }
+            .h1-main { font-size: 20px !important; line-height: 1.25 !important; }
             .h2-section { font-size: 20px !important; line-height: 1.3 !important; }
             .final-cta { text-align: center !important; }
             .final-cta .container { align-items: center !important; text-align: center !important; }
             .final-cta .p-main { margin-left: auto !important; margin-right: auto !important; text-align: center !important; }
+            .final-cta .final-cta-footer { width: 100% !important; justify-content: center !important; }
+            .final-cta .btn-primary { display: block !important; width: 100% !important; text-align: center !important; }
             .final-cta .social-icons { align-items: center; justify-content: center; }
             
             .hero {
@@ -1515,6 +1568,10 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXHG59GC"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <svg width="0" height="0" class="hidden" style="position: absolute;">
         <defs>
             <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1558,38 +1615,36 @@
     <main>
         <!-- Section 1: Hero -->
         <section class="hero container">
-            <h1 class="h1-main">SEU RESTAURANTE<br>CRESCENDO&nbsp;COM<br><span>INTELIGÊNCIA</span></h1>
+            <h1 class="h1-main">SEU RESTAURANTE<br>NÃO PODE DEPENDER<br>DE SORTE PARA<br><span class="h1-italic">Vender mais</span></h1>
             <p class="p-main" style="margin-bottom: 36px;">
-                Seu restaurante pode crescer com mais controle, mais recorrência e decisões mais seguras.
-                A Tastto une marketing, inteligência de dados e estratégia para fortalecer sua operação, no salão e no delivery, com uma comunicação mais clara e uma base de clientes melhor trabalhada.
+                Seu salão vive de movimento instável, o delivery fica com seus clientes e você ainda decide muita coisa no achismo? A Tastto une marketing estratégico, inteligência de dados e campanhas de recorrência para transformar pedidos soltos em clientes fiéis, aumentar controle da operação e fazer seu restaurante crescer novamente.
             </p>
             <div class="hero-form-wrapper">
-                <h3 class="hero-form-title">Agende sua consultoria estratégica!</h3>
+                <h3 class="hero-form-title">Agende sua assessoria estratégica!</h3>
                 <form id="heroForm" class="hero-form">
+                    <!-- Nome -->
                     <div class="hero-form-input-group">
                         <div class="hero-form-icon-wrap">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
                         </div>
                         <input type="text" id="formNome" name="nome" placeholder="Nome" class="hero-form-input" required pattern="^[A-Za-zÀ-ÿ\s]+$" title="Permitido apenas letras">
                     </div>
-                    
+                    <!-- E-mail -->
                     <div class="hero-form-input-group">
                         <div class="hero-form-icon-wrap">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                         </div>
-                        <input type="email" id="formEmail" name="email" placeholder="E-mail" class="hero-form-input" required pattern="^.+?\.com(\.br)?$" title="O e-mail deve terminar com .com ou .com.br">
+                        <input type="email" id="formEmail" name="email" placeholder="E-mail" class="hero-form-input" required>
                     </div>
-                    
+                    <!-- Telefone -->
                     <div class="hero-form-input-group">
                         <div class="hero-form-icon-wrap">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
                         </div>
-                        <input type="tel" id="formTel" name="telefone" placeholder="Telefone" class="hero-form-input" required pattern="^[\+]?[\(\s\-]*[0-9]{2}[\)\s\-]*[0-9]{4,5}[\-\s]*[0-9]{4}$" title="Insira um telefone com 2 dígitos de DDD seguidos do número. Ex: (84) 99999-9999">
+                        <input type="tel" id="formTel" name="telefone" placeholder="Telefone" class="hero-form-input" required maxlength="15" oninput="let v = this.value.replace(/\D/g, '').substring(0, 11); v = v.replace(/^(\d{2})(\d)/g, '($1) $2'); v = v.replace(/(\d)(\d{4})$/, '$1-$2'); this.value = v;">
                     </div>
-
                     <button type="submit" id="formSubmitBtn" class="btn-primary hero-btn-submit">AGENDAR</button>
                 </form>
-                
                 <div id="formSuccessMessage" style="display: none; background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.3); padding: 12px 16px; border-radius: 12px; margin-top: 12px; font-family: 'DM Sans', sans-serif; font-size: 14px; text-align: center;">
                     ✅ Dados enviados com sucesso! Redirecionando para o WhatsApp...
                 </div>
@@ -1603,44 +1658,44 @@
         <section class="brands-marquee">
             <div class="marquee-track">
                 <!-- Group 1 -->
-                <img src="dist/ALO PIZZA L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CARAVELA L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CARDUME L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CASA MOSCOU L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CASA NACRE L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CORTE 84 L.png" alt="Brand" class="brand-logo">
-                <img src="dist/DUNNAS L.png" alt="Brand" class="brand-logo">
-                <img src="dist/FOGO  ² L.png" alt="Brand" class="brand-logo">
-                <img src="dist/GALETERIA L.png" alt="Brand" class="brand-logo">
-                <img src="dist/HSH L.png" alt="Brand" class="brand-logo">
-                <img src="dist/KALAZ L.png" alt="Brand" class="brand-logo">
-                <img src="dist/MENEZ L.png" alt="Brand" class="brand-logo">
-                <img src="dist/MK BURGUER L.png" alt="Brand" class="brand-logo">
-                <img src="dist/NIPPON L.png" alt="Brand" class="brand-logo">
-                <img src="dist/PICUÍ L.png" alt="Brand" class="brand-logo">
-                <img src="dist/THE DEW L.png" alt="Brand" class="brand-logo">
-                <img src="dist/UNI SABOR L.png" alt="Brand" class="brand-logo">
-                <img src="dist/ZAMÔ L.png" alt="Brand" class="brand-logo">
+                <img src="assets/ALO PIZZA L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CARAVELA L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CARDUME L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CASA MOSCOU L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CASA NACRE L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CORTE 84 L.png" alt="Brand" class="brand-logo">
+                <img src="assets/DUNNAS L.png" alt="Brand" class="brand-logo">
+                <img src="assets/FOGO  ² L.png" alt="Brand" class="brand-logo">
+                <img src="assets/GALETERIA L.png" alt="Brand" class="brand-logo">
+                <img src="assets/HSH L.png" alt="Brand" class="brand-logo">
+                <img src="assets/KALAZ L.png" alt="Brand" class="brand-logo">
+                <img src="assets/MENEZ L.png" alt="Brand" class="brand-logo">
+                <img src="assets/MK BURGUER L.png" alt="Brand" class="brand-logo">
+                <img src="assets/NIPPON L.png" alt="Brand" class="brand-logo">
+                <img src="assets/PICUÍ L.png" alt="Brand" class="brand-logo">
+                <img src="assets/THE DEW L.png" alt="Brand" class="brand-logo">
+                <img src="assets/UNI SABOR L.png" alt="Brand" class="brand-logo">
+                <img src="assets/ZAMÔ L.png" alt="Brand" class="brand-logo">
                 
                 <!-- Group 2 (Duplicate for infinite loop) -->
-                <img src="dist/ALO PIZZA L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CARAVELA L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CARDUME L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CASA MOSCOU L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CASA NACRE L.png" alt="Brand" class="brand-logo">
-                <img src="dist/CORTE 84 L.png" alt="Brand" class="brand-logo">
-                <img src="dist/DUNNAS L.png" alt="Brand" class="brand-logo">
-                <img src="dist/FOGO  ² L.png" alt="Brand" class="brand-logo">
-                <img src="dist/GALETERIA L.png" alt="Brand" class="brand-logo">
-                <img src="dist/HSH L.png" alt="Brand" class="brand-logo">
-                <img src="dist/KALAZ L.png" alt="Brand" class="brand-logo">
-                <img src="dist/MENEZ L.png" alt="Brand" class="brand-logo">
-                <img src="dist/MK BURGUER L.png" alt="Brand" class="brand-logo">
-                <img src="dist/NIPPON L.png" alt="Brand" class="brand-logo">
-                <img src="dist/PICUÍ L.png" alt="Brand" class="brand-logo">
-                <img src="dist/THE DEW L.png" alt="Brand" class="brand-logo">
-                <img src="dist/UNI SABOR L.png" alt="Brand" class="brand-logo">
-                <img src="dist/ZAMÔ L.png" alt="Brand" class="brand-logo">
+                <img src="assets/ALO PIZZA L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CARAVELA L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CARDUME L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CASA MOSCOU L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CASA NACRE L.png" alt="Brand" class="brand-logo">
+                <img src="assets/CORTE 84 L.png" alt="Brand" class="brand-logo">
+                <img src="assets/DUNNAS L.png" alt="Brand" class="brand-logo">
+                <img src="assets/FOGO  ² L.png" alt="Brand" class="brand-logo">
+                <img src="assets/GALETERIA L.png" alt="Brand" class="brand-logo">
+                <img src="assets/HSH L.png" alt="Brand" class="brand-logo">
+                <img src="assets/KALAZ L.png" alt="Brand" class="brand-logo">
+                <img src="assets/MENEZ L.png" alt="Brand" class="brand-logo">
+                <img src="assets/MK BURGUER L.png" alt="Brand" class="brand-logo">
+                <img src="assets/NIPPON L.png" alt="Brand" class="brand-logo">
+                <img src="assets/PICUÍ L.png" alt="Brand" class="brand-logo">
+                <img src="assets/THE DEW L.png" alt="Brand" class="brand-logo">
+                <img src="assets/UNI SABOR L.png" alt="Brand" class="brand-logo">
+                <img src="assets/ZAMÔ L.png" alt="Brand" class="brand-logo">
             </div>
         </section>
 
@@ -1666,14 +1721,14 @@
                     <p class="ps-card-desc">Identifique os gargalos que impedem sua operação de escalar com eficiência e clareza.</p>
                     <div class="ps-divider"></div>
                     <ul class="ps-list">
-                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Decisões tomadas no feeling</li>
-                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Comunicação solta com os clientes</li>
-                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Base de clientes pouco trabalhada</li>
-                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Falta de visão sobre o que gera resultado</li>
-                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Delivery sem estrutura</li>
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Falta de previsibilidade nas vendas</li>
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Cliente compra uma vez e não volta</li>
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Comunicação solta e sem estratégia</li>
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Dependência excessiva do delivery</li>
+                        <li class="ps-item"><svg class="icon-x" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg> Pouca clareza sobre o que realmente&nbsp;gera&nbsp;resultado</li>
                     </ul>
                     <div class="ps-btn-wrap">
-                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-card btn-card-gradient">Analisar Cenário</a>
+                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20identificar%20meus%20gargalos." target="_blank" class="btn-card btn-card-gradient">QUERO IDENTIFICAR MEUS GARGALOS</a>
                     </div>
                 </div>
 
@@ -1691,11 +1746,11 @@
                     <p class="ps-card-desc">Direção técnica e estratégica baseada em dados reais para transformar sua operação.</p>
                     <div class="ps-divider"></div>
                     <ul class="ps-list">
-                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Direção baseada em dados reais</li>
-                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Estratégia de comunicação clara</li>
-                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Ações para aumentar recorrência</li>
-                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Inteligência para identificar gargalos</li>
-                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Marketing voltado para retenção</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Estratégia baseada em dados reais</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Ações para aumentar recompra</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Comunicação mais certeira com&nbsp;seus&nbsp;clientes</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Menos achismo, mais decisão inteligente</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Crescimento com mais previsibilidade</li>
                     </ul>
                     <div class="ps-btn-wrap">
                         <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-card btn-card-gradient">Quero Crescer Agora</a>
@@ -1716,12 +1771,14 @@
                     <p class="ps-card-desc">Qualquer dúvida ou problema estamos de prontidão para ajudar você e seu time.</p>
                     <div class="ps-divider"></div>
                     <ul class="ps-list">
-                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Atendimento personalizado</li>
-                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Especialistas em dados</li>
-                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Consultoria estratégica</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Diagnóstico do cenário atual</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Direcionamento estratégico</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Visão prática de oportunidades</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Atendimento consultivo</li>
+                        <li class="ps-item"><svg class="icon-check" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Próximos passos com clareza</li>
                     </ul>
                     <div class="ps-btn-wrap">
-                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-card btn-card-gradient">Fale Conosco</a>
+                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="btn-card btn-card-gradient">QUERO FALAR COM UM ESPECIALISTA</a>
                     </div>
                 </div>
             </div>
@@ -1732,17 +1789,22 @@
         <!-- Section 5: Testimonials -->
         <section id="depoimentos" class="testimonials container">
             <div style="text-align: center; margin-bottom: 100px;">
-                <h2 class="h2-section">OPERAÇÕES QUE&nbsp;JÁ<br><span>VIVEM A NOVA ERA DE&nbsp;DADOS</span></h2>
+                <h2 class="h2-section">OPERAÇÕES QUE JÁ BATERAM<br><span>RECORDE DE FATURAMENTO</span></h2>
             </div>
             <div class="testimonials-grid">
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video src="dist/depoimento casa moscou.mp4" poster="dist/capa casamoscou png.png" controls playsinline preload="metadata"></video>
+                        <video src="assets/depoimento casa moscou.mp4" poster="assets/capa casamoscou png.png" controls playsinline preload="metadata"></video>
                     </div>
                 </div>
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <video src="dist/DEPPOIMENTO MK.mp4" poster="dist/CAPA MK.png" controls playsinline preload="metadata"></video>
+                        <video src="assets/DEPPOIMENTO MK.mp4" poster="assets/CAPA MK.png" controls playsinline preload="metadata"></video>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <video src="assets/Arttico - Dep. Nippon V (1).mp4" poster="assets/Nippon.png" controls playsinline preload="metadata"></video>
                     </div>
                 </div>
             </div>
@@ -1762,14 +1824,14 @@
                         Você passa a enxergar melhor o que funciona, onde está perdendo venda, quais clientes precisam voltar e quais movimentos realmente fazem sentido para o seu momento.
                     </p>
                     <div class="bd-main-cta">
-                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20agendar%20um%20diagnóstico." target="_blank" class="btn-primary">AGENDAR DIAGNÓSTICO GRATUITO</a>
+                        <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20agendar%20um%20diagnóstico." target="_blank" class="btn-primary">AGENDAR DIAGNÓSTICO</a>
                     </div>
                 </div>
                 <div class="bd-cards">
                     <div class="mini-card">
                         <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg></div>
                         <h4>Operação de Salão</h4>
-                        <p>Estratégias para aumentar o ticket médio e melhorar a experiência presencial.</p>
+                        <p>Estratégias para aumentar ticket médio, melhorar a experiência do cliente e fazer o salão vender mais com inteligência.</p>
                         <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Operação%20de%20Salão." target="_blank" class="btn-mini-card">
                             Saiba Mais
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -1778,7 +1840,7 @@
                     <div class="mini-card">
                         <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
                         <h4>Gestão de Ifood</h4>
-                        <p>Otimização de investimento<br>em campanhas.</p>
+                        <p>Recupere o controle dos seus clientes no iFood com estratégias para vender melhor, fortalecer sua base própria e reduzir a dependência da plataforma.</p>
                         <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Gestão%20de%20Ifood." target="_blank" class="btn-mini-card">
                             Saiba Mais
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -1787,7 +1849,7 @@
                     <div class="mini-card">
                         <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
                         <h4>Inteligência de Dados</h4>
-                        <p>Transformamos números em decisões estratégicas para o seu crescimento.</p>
+                        <p>Transformamos os dados do seu restaurante em decisões mais seguras para vender mais, reter clientes e crescer com clareza.</p>
                         <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Inteligência%20de%20Dados." target="_blank" class="btn-mini-card">
                             Saiba Mais
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -1796,7 +1858,7 @@
                     <div class="mini-card">
                         <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20v-6M6 20V10M18 20V4"></path></svg></div>
                         <h4>Engenharia de Cardápio</h4>
-                        <p>Otimização de pratos e preços para maximizar sua margem de lucro.</p>
+                        <p>Ajustamos pratos, preços e estrutura do cardápio para aumentar margem, melhorar giro e vender com mais estratégia.</p>
                         <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Engenharia%20de%20Cardápio." target="_blank" class="btn-mini-card">
                             Saiba Mais
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -1805,7 +1867,7 @@
                     <div class="mini-card">
                         <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div>
                         <h4>Relacionamento com o Cliente</h4>
-                        <p>Gestão de CRM, aumento de retenção e frequência de compra dos clientes.</p>
+                        <p>Fortalecemos o CRM do seu restaurante para aumentar recompra, retenção e frequência dos clientes no salão e no delivery.</p>
                         <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Relacionamento%20com%20o%20Cliente." target="_blank" class="btn-mini-card">
                             Saiba Mais
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -1814,7 +1876,7 @@
                     <div class="mini-card">
                         <div class="mini-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
                         <h4>Gestão de Tráfego</h4>
-                        <p>Campanhas segmentadas para atrair o público certo para o seu negócio.</p>
+                        <p>Atraímos pessoas com real potencial de compra para gerar mais movimento, mais pedidos e mais faturamento.</p>
                         <a href="https://wa.me/558481408381?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20Gestão%20de%20Tráfego." target="_blank" class="btn-mini-card">
                             Saiba Mais
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -1831,7 +1893,7 @@
             <div class="container">
                 <div class="m5-header">
                     <h2 class="m5-title">MÉTODO <span>FIVE</span></h2>
-                    <p class="m5-subtitle">Cinco pilares estratégicos que estruturam o crescimento<br>inteligente do seu restaurante.</p>
+                    <p class="m5-subtitle">Cinco pilares estratégicos que a Tastto utiliza para fazer restaurantes baterem recorde de faturamento.</p>
                 </div>
 
                 <div class="m5-grid">
@@ -1841,14 +1903,14 @@
                             <span class="m5-num">01</span>
                             <h4 class="m5-card-title">Posicionamento</h4>
                         </div>
-                        <p class="m5-card-desc">Quais plataformas o seu restaurante está ativo? Facebook, Instagram, Google, TripAdvisor e Ifood são exemplos de plataformas importantes.</p>
+                        <p class="m5-card-desc">Seu restaurante precisa estar presente nos lugares certos para ser encontrado por quem procura onde comer, pedir ou conhecer a sua marca. Facebook, Instagram, Google, TripAdvisor e Ifood são exemplos de plataformas importantes.</p>
                     </div>
                     <div class="m5-card">
                         <div class="m5-card-top">
                             <span class="m5-num">03</span>
                             <h4 class="m5-card-title">Encantamento</h4>
                         </div>
-                        <p class="m5-card-desc">Sistema de avaliação e comunicação assertiva para transformar clientes em promotores da marca.</p>
+                        <p class="m5-card-desc">Criamos sistemas de avaliação e comunicação para melhorar a experiência do cliente e transformar boas experiências em indicação e recompra.</p>
                     </div>
 
                     <!-- Card central (row-span 2) -->
@@ -1857,7 +1919,7 @@
                             <span class="m5-num">02</span>
                             <h4 class="m5-card-title">Estratégia</h4>
                         </div>
-                        <p class="m5-card-desc">Conhecer os pontos fortes e fracos da marca para a aplicação de ações estratégicas, tendo sempre como objetivo o Método Five, a partir da transparência de dados e números.</p>
+                        <p class="m5-card-desc">Aplicamos o Método Five para transformar os pontos fortes e fracos do seu restaurante em ações claras, sempre com base em dados, números e visão prática do negócio.</p>
                         <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-primary" style="margin-top: auto; font-size: 12px; padding: 12px 20px; text-align: center;">QUERO CRESCER COM O MÉTODO FIVE</a>
                     </div>
 
@@ -1867,14 +1929,14 @@
                             <span class="m5-num">04</span>
                             <h4 class="m5-card-title">Segmentação</h4>
                         </div>
-                        <p class="m5-card-desc">Segmentar é direcionar seus anúncios para as pessoas certas, no momento certo, com a mensagem certa.</p>
+                        <p class="m5-card-desc">Direcionamos a comunicação para o público real do seu restaurante, entendendo quem compra, o que consome, quando volta e como pode ser impactado com mais precisão.</p>
                     </div>
                     <div class="m5-card">
                         <div class="m5-card-top">
                             <span class="m5-num">05</span>
                             <h4 class="m5-card-title">Oferta</h4>
                         </div>
-                        <p class="m5-card-desc">Oferta não é promoção. É a construção de valor percebido que convence o cliente a agir sem precisar de desconto.</p>
+                        <p class="m5-card-desc">Oferta não é baixar preço. É construir valor para o cliente perceber por que vale escolher o seu restaurante, sem depender sempre de desconto.</p>
                     </div>
                 </div>
             </div>
@@ -1887,12 +1949,12 @@
         <!-- Section 6: Final CTA -->
         <section id="contato" class="final-cta" style="display: block; text-align: left; padding-top: 60px;">
             <div class="container" style="display: flex; flex-direction: column; align-items: flex-start;">
-                <h2 class="h2-section">A NOVA ERA DA&nbsp;SUA<br>OPERAÇÃO <span>COMEÇA AGORA</span></h2>
+                <h2 class="h2-section">A NOVA ERA DO SEU<br>RESTAURANTE <span class="h1-italic">Começa agora</span></h2>
                 <p class="p-main" style="margin-left: 0; margin-right: auto;">
-                    Na consultoria estratégica, você entende com mais clareza onde sua operação está travando, o que está faltando na sua estrutura e quais ações podem gerar mais resultado no seu momento atual.
+                    Seu restaurante pode estar deixando dinheiro na mesa todos os dias. Em nossa assessoria estratégica, identificamos os gargalos da sua operação e mostramos quais ações podem gerar mais vendas, mais recorrência e mais controle sobre o crescimento do seu negócio.
                 </p>
                 <div class="final-cta-footer" style="width: 100%;">
-                    <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20mais%20informações." target="_blank" class="btn-primary">AGENDAR CONSULTORIA ESTRATÉGICA</a>
+                    <a href="https://wa.me/558481408381?text=Olá,%20vim%20através%20da%20Landing%20Page%20da%20Tastto%20e%20gostaria%20de%20agendar%20um%20diagnóstico." target="_blank" class="btn-primary">AGENDAR DIAGNÓSTICO</a>
                 </div>
                 <div style="width: 100%; display: flex; justify-content: center; margin-top: 80px;">
                     <div class="social-icons" style="display: flex; gap: 16px;">
@@ -1923,7 +1985,7 @@
                     <p class="faq-answer">Sim. Atendemos operações de diferentes nichos da alimentação, com foco em restaurantes que querem crescer com mais estratégia, clareza e estrutura.</p>
                 </div>
                 <div class="faq-item">
-                    <h4 class="faq-question">A consultoria é só para quem já tem delivery? <span class="faq-icon">+</span></h4>
+                    <h4 class="faq-question">A assessoria é só para quem já tem delivery? <span class="faq-icon">+</span></h4>
                     <p class="faq-answer">Não. A Tastto não atua só com delivery. Também atendemos restaurantes que trabalham apenas com salão e querem melhorar posicionamento, recorrência, comunicação e resultado. E, para quem atua com delivery, ajudamos a estruturar esse canal com mais organização e potencial de crescimento.</p>
                 </div>
                 <div class="faq-item">
@@ -1932,16 +1994,13 @@
                 </div>
                 <div class="faq-item">
                     <h4 class="faq-question">Quanto tempo leva para ver resultado? <span class="faq-icon">+</span></h4>
-                    <p class="faq-answer">Marketing que funciona de verdade não é mágica — é processo. Nossos clientes começam a enxergar mudanças concretas em até 6 meses: mais clareza sobre o que funciona, campanhas mais eficientes e decisões baseadas em dados reais. E ao longo desse caminho, você já vai sentindo a diferença nas análises e no direcionamento do seu negócio.</p>
+                    <p class="faq-answer">Marketing que funciona de verdade não é mágica: é processo. Nossos clientes começam a enxergar mudanças concretas em até 6 meses: mais clareza sobre o que funciona, campanhas mais eficientes e decisões baseadas em dados reais. E ao longo desse caminho, você já vai sentindo a diferença nas análises e no direcionamento do seu negócio.</p>
                 </div>
                 <div class="faq-item">
                     <h4 class="faq-question">Preciso ter sistema de gestão integrado? <span class="faq-icon">+</span></h4>
-                    <p class="faq-answer">Não é obrigatório. Trabalhamos com restaurantes em diferentes estágios — desde os que ainda operam de forma mais manual até os que já têm sistemas robustos. Ter um sistema de gestão ajuda a acelerar os resultados, mas o ponto de partida é o que você já tem hoje.</p>
+                    <p class="faq-answer">Não é obrigatório. Trabalhamos com restaurantes em diferentes estágios, desde os que ainda operam de forma mais manual até os que já têm sistemas robustos. Ter um sistema de gestão ajuda a acelerar os resultados, mas o ponto de partida é o que você já tem hoje.</p>
                 </div>
-                <div class="faq-item">
-                    <h4 class="faq-question">Como é feita a cobrança? <span class="faq-icon">+</span></h4>
-                    <p class="faq-answer">Cada restaurante tem uma realidade diferente, então nossos planos são personalizados de acordo com o tamanho e as necessidades do seu negócio. Entre em contato e a gente apresenta a proposta ideal para você.</p>
-                </div>
+
             </div>
         </section>
     </main>
@@ -1958,8 +2017,8 @@
                 <div class="footer-col">
                     <h4>Contato</h4>
                     <div class="footer-links">
-                        <span class="footer-link">+55 84 8140-8381</span>
-                        <span class="footer-link">atendimento@grupoarttico.com.br</span>
+                        <a href="tel:+558498140-8381" class="footer-link">+55 84 98140-8381</a>
+                        <a href="mailto:administrativo@grupoarttico.com.br" class="footer-link">administrativo@grupoarttico.com.br</a>
                         <span class="footer-link">Natal/RN</span>
                     </div>
                 </div>
@@ -1968,7 +2027,7 @@
                     <div class="footer-links">
                         <span class="footer-link">Shopping, Av. Eng. Roberto Freire, 1962</span>
                         <span class="footer-link">Capim Macio, Natal - RN</span>
-                        <span class="footer-link">59082-095</span>
+                        <span class="footer-link">Loja 26, 59082-095</span>
                     </div>
                 </div>
             </div>
@@ -2040,7 +2099,7 @@
 
                 // Validação Rígida em JavaScript (Backups de RegEx)
                 const nomeRegex = /^[A-Za-zÀ-ÿ\s]+$/;
-                const telRegex = /^[\+]?[\(\s\-]*[0-9]{2}[\)\s\-]*[0-9]{4,5}[\-\s]*[0-9]{4}$/;
+                const telRegex = /^[\+]?[\(\s\-]*[0-9]{2}[\)\s\-]*[0-9]{5}[\-\s]*[0-9]{4}$/;
                 
                 if (!nomeRegex.test(nome)) {
                     alert('Erro: O campo Nome deve conter apenas letras e espaços.');
@@ -2059,15 +2118,39 @@
                 }
                 
                 if (!telRegex.test(telefone)) {
-                    alert('Erro: O telefone inserido é inválido. Digite apenas números, certificando-se de incluir os 2 dígitos do DDD da sua região.');
+                    alert('Erro: O telefone inserido é inválido. Certifique-se de incluir os 2 dígitos do DDD seguidos de exatamente 9 números.');
                     btn.innerText = 'AGENDAR';
                     btn.style.opacity = '1';
                     btn.disabled = false;
                     return;
                 }
 
-                const mensagemWhatsapp = `Olá, me chamo ${nome}. Já respondi o formulário na Landing Page da Tastto e gostaria de seguir com o agendamento da consultoria estratégica.`;
+                const mensagemWhatsapp = `Olá, me chamo ${nome}. Já respondi o formulário na Landing Page da Tastto e gostaria de seguir com o agendamento da assessoria estratégica.`;
                 
+                // Tracking LeadConnector
+                fetch('https://backend.leadconnectorhq.com/external-tracking/events', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'version': '2021-07-28'
+                    },
+                    body: JSON.stringify({
+                        type: 'external_form_submission',
+                        timestamp: Date.now(),
+                        formId: 'Consultoria Estrategica',
+                        formData: { first_name: nome, email: email, phone: telefone },
+                        formLabels: { first_name: 'Nome', email: 'E-mail', phone: 'Telefone' },
+                        url: window.location.href,
+                        title: document.title,
+                        path: window.location.pathname,
+                        userAgent: navigator.userAgent,
+                        trackingId: 'tk_d1bc9c16e40a4abe889f380a4cf2395d',
+                        locationId: '2p8mkAS03f3WCQBl17Je',
+                        sessionId: crypto.randomUUID(),
+                        properties: { deviceType: /Mobile|Android|iPhone/i.test(navigator.userAgent) ? 'mobile' : 'desktop' }
+                    })
+                }).catch(() => {});
+
                 try {
                     const response = await fetch('https://script.google.com/macros/s/AKfycby3H2oGLtZcv4_RK1nmwCB-fNwkRGNGVZChbzOTCRfumCYNyZCCSLIyoKXc9oUjWNE5KQ/exec', {
                         method: 'POST',
@@ -2082,16 +2165,12 @@
                     btn.innerText = 'AGENDAR';
                     btn.style.opacity = '1';
                     btn.disabled = false;
+                    
+                    // Atualizar mensagem de sucesso com o texto customizado
+                    successMsg.innerHTML = `✅ Recebemos suas informações com sucesso.<br>Em breve, um especialista da Tastto entrará em contato para entender melhor o cenário do seu restaurante e mostrar os próximos passos.`;
                     successMsg.style.display = 'block';
                     
                     heroForm.reset();
-                    
-                    const numeroWhatsapp = '558481408381';
-                    const urlWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensagemWhatsapp)}`;
-                    
-                    setTimeout(() => {
-                        window.location.href = urlWhatsapp;
-                    }, 1500);
 
                 } catch (error) {
                     console.error('Erro ao enviar:', error);

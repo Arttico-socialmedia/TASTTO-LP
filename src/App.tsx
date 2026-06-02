@@ -102,10 +102,15 @@ export default function App() {
               transition={{ duration: 0.6 }}
             >
               <SectionTag>Inteligência & Estratégia</SectionTag>
-              <h1 className="text-5xl md:text-8xl font-bold leading-[0.9] mb-8 gradient-text tracking-tight">
-                SEU RESTAURANTE <br />
-                CRESCENDO COM <br />
-                INTELIGÊNCIA
+              <h1 className="text-5xl md:text-7xl font-bold leading-[0.92] mb-8 tracking-tight">
+                <span className="gradient-text">
+                  SEU RESTAURANTE<br />
+                  NÃO PODE DEPENDER<br />
+                  DE SORTE PARA<br />
+                </span>
+                <span className="gradient-text italic">
+                  Vender mais
+                </span>
               </h1>
               <p className="text-xl md:text-2xl text-tastto-gray/80 max-w-2xl mb-12 leading-relaxed font-light">
                 Seu restaurante pode crescer com mais controle, mais recorrência e decisões mais seguras.
